@@ -1,0 +1,99 @@
+<div class="tab-pane fade show active" id="contact-form" aria-labelledby="contact-form">
+  <article class="card-body">
+    <h3 class="card-title text-center mb-2" *ngIf="!check">Congratulations on winning a {{auction.auctionName}}</h3>
+    <h3 class="card-title text-center mb-2" *ngIf="check">Contact form for {{auction.auctionName}}</h3>
+    <hr>
+    <div class="row" *ngIf="!check">
+      <div class="col-md-12 mb-3">
+        Please fill in your personal data and the seller of the item will contact you soon.
+      </div>
+    </div>
+    <form ngNativeValidate name="form" class="form-horizontal" (ngSubmit)="submitContactForm()">
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+          </div>
+          <input name="firstName"  [(ngModel)]="model.firstName" class="form-control" style="padding-left: 5px;" placeholder="First Name" type="text" [disabled]="check" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+          </div>
+          <input name="lastName"  [(ngModel)]="model.lastName" class="form-control" style="padding-left: 5px;" placeholder="Last Name" type="text" [disabled]="check" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-envelope fa"></i> </span>
+          </div>
+          <input name="email"  [(ngModel)]="model.email" class="form-control" style="padding-left: 5px;" placeholder="Email Address" type="text" [disabled]="check" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-flag"></i> </span>
+              </div>
+              <input name="country" [(ngModel)]="model.country" class="form-control" style="padding-left: 5px;" placeholder="Country" type="text" [disabled]="check" required>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-map-marker"></i> </span>
+              </div>
+              <input name="city" [(ngModel)]="model.city" class="form-control" style="padding-left: 5px;" placeholder="City" type="text" [disabled]="check" required>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-8 col-sm-8 col-md-8">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-map-pin"></i> </span>
+              </div>
+              <input name="street" [(ngModel)]="model.street" class="form-control" style="padding-left: 5px;" placeholder="Street" type="text" [disabled]="check" required>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-home"></i> </span>
+              </div>
+              <input name="houseNr" [(ngModel)]="model.houseNr" class="form-control" style="padding-left: 5px;" placeholder="House no." type="number" min="1" [disabled]="check" required>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+          </div>
+          <input name="phoneNumbe" [(ngModel)]="model.phoneNumbe" class="form-control" style="padding-left: 8px;" placeholder="Phone Number" minlength="8" maxlength="16" [disabled]="check" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-12">
+            <textarea class="form-control" name="remark" [(ngModel)]="model.remark" aria-label="With textarea" id="inputDescription"
+                      placeholder="Remark" [disabled]="check"></textarea>
+        </div>
+      </div>
+      <div class="form-group" *ngIf="!check">
+        <button type="submit" class="btn btn-primary btn-lg btn-block login-button mt-4" [disabled]="buttonDisable">Submit</button>
+      </div>
+    </form>
+  </article>
+</div>

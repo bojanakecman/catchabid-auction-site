@@ -1,0 +1,42 @@
+<form id="form" [formGroup]="bidsForm" (ngSubmit)="onBidSave()" ngNativeValidate>
+  <div class="modal-header" style="border-bottom-width: 1px">
+    <h4 class="modal-title pull-left">Place a bid</h4>
+    <button type="button" class="close pull-right" (click)="onModalClose()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-12">
+        <p>What would be your offer for the auction
+          <span style="font-weight: bold;">{{ auction.auctionName }}</span>?</p>
+        <p *ngIf="auction.highestBid">Please note that the current highest offer is
+          <span style="font-weight: bold;">{{ auction.highestBid }}€</span>.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-6">
+          <div class="input-group">
+            <input
+            type="number"
+            class="form-control"
+            id="offer-input"
+            placeholder="Offer"
+            formControlName="offer">
+            <div class="input-group-append">
+              <span class="input-group-text">€</span>
+            </div>
+            <div class="invalid-feedback d-block"
+            *ngIf="invalidOffer">Please provide an offer higher than the currently highest one.</div>
+            <div class="invalid-feedback d-block"
+            *ngIf="newCurrentBidValue">It seems that your offer has already been exceeded. New current offer is: {{ newCurrentBidValue }}.</div>
+          </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary">
+          Place a bid</button>
+  </div>
+</form>

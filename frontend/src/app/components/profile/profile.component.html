@@ -1,0 +1,122 @@
+<div class="container light-style flex-grow-1 container-p-y " >
+
+  <h4 class="font-weight-bold py-3 mb-4">
+    My profile
+  </h4>
+  <div class="card">
+    <div class="row no-gutters row-bordered row-border-light">
+      <div class="col-md-3 pt-0">
+        <div class="list-group list-group-flush account-settings-links">
+          <a class="list-group-item list-group-item-action active" data-toggle="list"
+             href="#account-general">General</a>
+          <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-change-password">Change
+            password</a>
+          <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-subscriptions">Subscriptions</a>
+          <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-my-auctions">My
+            Auctions</a>
+          <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-my-bids">My Bids</a>
+          <a class="list-group-item list-group-item-action" data-toggle="list" href="#won-auctions">My Won Auctions</a>
+          <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-my-statistics">My
+            Statistics</a>
+        </div>
+      </div>
+      <div class="col-md-9 ">
+        <div class="tab-content border">
+          <div class="tab-pane fade active show" id="account-general" style="height: 1100px">
+            <hr class="border-light m-0">
+            <form ngNativeValidate name="form" (ngSubmit)="confirmSave()" class="form-horizontal">
+              <!--                  oninput='pass4.setCustomValidity(pass4.value != pass3.value ? "Passwords do not match." : "")'>-->
+
+              <div class="card-body">
+                <div class="form-group" *ngIf="isRegularUser">
+                  <label class="form-label">First Name</label>
+                  <input name="firstName" [(ngModel)]="updatedUser.firstName" type="text" class="form-control mb-1">
+                </div>
+                <div *ngIf="isRegularUser" class="form-group">
+                  <label class="form-label">Last Name</label>
+                  <input name="lastName" [(ngModel)]="updatedUser.lastName" type="text" class="form-control">
+                </div>
+
+
+                <div *ngIf="!isRegularUser" class="form-group">
+                  <label class="form-label">Name</label>
+                  <input name="houseName" [(ngModel)]="updatedUser.name" type="text" class="form-control">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">E-mail</label>
+                  <input name="email" [(ngModel)]="updatedUser.email" type="email" class="form-control mb-1">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Phone Number</label>
+                  <input name="phone" [(ngModel)]="updatedUser.phoneNr" type="text" class="form-control">
+                </div>
+                <div>
+                  <label>Preferences</label>
+                  <ng-multiselect-dropdown
+                    [settings]="dropdownSettings"
+                    [data]="dropdownList"
+                    [(ngModel)]="selectedPreferences"
+                    name="MyPreferences"
+                    class="d-inline-block"
+                    style="width: 100%"
+                  >
+                  </ng-multiselect-dropdown>
+                </div>
+
+                <hr style="height:4px;">
+
+                <p class="font-weight-bold">Address</p>
+                <div class="form-group">
+                  <label class="form-label">Country</label>
+                  <input name="addressCountry" [(ngModel)]="updatedUser.address.country" type="text"
+                         class="form-control">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">City</label>
+                  <input name="addressCity" [(ngModel)]="updatedUser.address.city" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Street</label>
+                  <input name="adressStreet" [(ngModel)]="updatedUser.address.street" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Number</label>
+                  <input name="addressHouseNr" [(ngModel)]="updatedUser.address.houseNr" type="text"
+                         class="form-control">
+                </div>
+              </div>
+              <div class="text-right mt-3">
+                <button class="btn btn-primary" style="margin: 15px">Save changes</button>
+              </div>
+            </form>
+          </div>
+          <div class="tab-pane fade" id="account-change-password" style="height: 1100px">
+            <update-password style="height: 1100px"></update-password>
+          </div>
+          <div class="tab-pane fade" id="won-auctions" style="height: 1100px">
+            <app-profile-auctions-list typeOfAuctions="WINS"></app-profile-auctions-list>
+          </div>
+          <div class="tab-pane fade" id="account-subscriptions" style="height: 1100px">
+            <app-profile-auctions-list typeOfAuctions="SUBSCRIPTIONS"></app-profile-auctions-list>
+          </div>
+          <div class="tab-pane fade " id="account-my-auctions" style="height: 1100px">
+            <app-profile-auctions-list typeOfAuctions='AUCTIONS'></app-profile-auctions-list>
+
+          </div>
+          <div class="tab-pane fade" id="account-my-bids" style="height: 1100px">
+            <app-profile-auctions-list typeOfAuctions='BIDS'></app-profile-auctions-list>
+
+          </div>
+          <div class="tab-pane fade" id="account-my-statistics" style="height: 1100px">
+            <app-statistics></app-statistics>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+</div>

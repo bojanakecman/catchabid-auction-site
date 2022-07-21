@@ -1,0 +1,129 @@
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #5271ff;">
+  <a class="navbar-brand" style="height: 1rem;
+      margin-bottom: 40px;" (click) = 'navigateHome()'>
+    <img
+      src="assets/img/brand/catchabid-logo-blue.png"
+      class="navbar-brand-img"
+      alt="..."
+      style="height: 3rem;"
+
+    />
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <form class="navbar-search navbar-search-dark">
+      <div id="searchForm" class="form-group mb-0" [ngClass]="{ 'focused': focus === true }">
+        <div class="input-group input-group-alternative">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-search"></i></span>
+          </div>
+          <input class="form-control" placeholder="Search" type="text" (focus)="focus = true"
+                 (blur)="focus = false"
+                 name="searchInputText" (keydown.enter)="processTextInput($event)" (focusout)="processTextInput($event)" [(ngModel)]="searchInputText"
+          >
+          <div class="input-group-prepend" >
+            <span *ngIf="searchInputText" class="input-group-text"><i  (click)="clearTestInput()" class="fa fa-times" style="cursor: pointer;"></i></span>
+          </div>
+        </div>
+      </div>
+    </form>
+    <ul *ngIf="!isUserLoggedIn()" class="navbar-nav ml-auto">
+      <li class="nav-item" id="auction-post">
+        <a class="btn special" (click)="isUserLoggedIn() ? createAuction() : openLoginModal()" >
+          Create an auction post
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="!isUserLoggedIn()">
+        <a class="btn special" (click)="openRegisterModal()" id="user-button" mdbWavesEffect>
+          Register
+        </a>
+      </li>
+      <li *ngIf="!isUserLoggedIn()" class="nav-item">
+        <a class="btn special" (click)="openLoginModal()" id="user-button">
+          Login
+        </a>
+      </li>
+    </ul>
+
+    <ul *ngIf="isUserLoggedIn()" class="navbar-nav ml-auto">
+      <li class="nav-item" id="auction-post">
+        <a class="btn special" (click)="isUserLoggedIn() ? createAuction() : openLoginModal()" >
+          Create an auction post
+        </a>
+      </li>
+      <li #notificationDropdown="ngbDropdown"
+        class="nav-item dropdown" ngbDropdown (openChange)="onNotificationsToggle()" placement="bottom-right">
+        <a class="nav-link dropdown-toggle" role="button" ngbDropdownToggle>
+          <i class="fa fa-bell"></i><span *ngIf="checkIfSomeUnseen()" class="sec counter counter-lg dot"></span>
+        </a>
+
+        <div
+          class="dropdown-menu dropdown-menu-xl dropdown-menu-right py-0 overflow-hidden"
+          ngbDropdownMenu style="width: 400px;"
+        >
+          <div class="px-3 py-3">
+            <h6 class="text-sm text-muted m-0">
+              NOTIFICATIONS
+            </h6>
+          </div>
+          <ul class="notification-box list-group list-group-flush" data-toggle="checklist">
+            <li *ngFor="let n of notifications; index as i"
+                [ngStyle]="!n.seen && {'background-color':'rgb(236, 241, 255)'}" title={{n.info}}
+                class="checklist-entry list-group-item flex-column align-items-start py-4 px-4"
+                style="width: 100%;"
+            >
+              <div class="row">
+                <div class="col-12 checklist-info">
+                  <h6 class="checklist-title mb-0">{{n.info}}</h6>
+                  <small>
+                    <a href="javascript:void(0)">
+                      <i class="fa fa-calendar"> </i>
+                      <span class=" text-muted"> {{n.date | date: 'yyyy-MM-dd'}}</span>
+                    </a>
+                  </small>
+                </div>
+                <div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown" ngbDropdown placement="bottom-right">
+        <button class="profile"
+                ngbDropdownToggle>
+          {{userName}}
+          <i class="fa fa-sort-desc" aria-hidden="true" style="margin-left:7px; font-size: 1.2rem;"></i>
+        </button>
+        <div
+          class="dropdown-menu dropdown-menu-arrow dropdown-menu-right"
+          ngbDropdownMenu
+        >
+          <div class=" dropdown-header noti-title">
+            <h6 class="text-overflow m-0">Welcome!</h6>
+          </div>
+          <a
+            routerLinkActive="active"
+            class="dropdown-item"
+            (click)="toUserSettings()"
+            style="cursor: pointer"
+          >
+            <i class="ni ni-settings-gear-65"></i> <span>My Profile</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a routerLinkActive="active"
+             class="dropdown-item"
+             style="color: black;"
+             (click)="logout()"
+             style="cursor: pointer">
+            <i class="ni ni-user-run"></i>
+            <span>Logout</span>
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

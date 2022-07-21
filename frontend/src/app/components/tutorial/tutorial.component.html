@@ -1,0 +1,48 @@
+<div class="modal-header" style="border-bottom-width: 1px">
+  <h4 class="modal-title pull-left">Tutorial</h4>
+  <button type="button" class="close pull-right" (click)="onModalClose()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="container">
+    <div class="row">
+      <img *ngIf="count == 1" src="/assets/img/SS1_catchabid.png" alt="Tutorial image 1" style="width: 100%">
+      <img *ngIf="count == 2" src="/assets/img/SS2_catchabid.png" alt="Tutorial image 2" style="width: 100%">
+      <img *ngIf="count == 3" src="/assets/img/SS3_catchabid.png" alt="Tutorial image 2" style="width: 100%">
+
+    </div>
+    <br/>
+    <div class="row">
+      <ol *ngIf="count == 1">
+        <li>Click on "Create an auction post" to create a new auction</li>
+        <li>Search auctions by keywords in the search bar</li>
+        <li>Filter out auctions according to your current preferences e.g. Category or Country</li>
+        <li>Check the details by clicking on a picture of an active auction</li>
+        <li>Place a bid by clicking on a bid button</li>
+      </ol>
+
+      <ol *ngIf="count == 2" start="6">
+        <li>Load more auctions (including the ones that are not in your preference list)</li>
+        <li>Subscribe to upcoming auctions by clicking on the auction's picture</li>
+        <li>Get notifications for subscribed auctions in notification bar</li>
+      </ol>
+
+      <ol *ngIf="count == 3" start="9">
+        <li>Check user profile by clicking on the user name -> "My profile"</li>
+        <li>You can</li>
+        <ul>
+          <li>Change general user information and password</li>
+          <li>Check created, subscribed, bid and won auctions</li>
+          <li>Check the statistics</li>
+        </ul>
+      </ol>
+    </div>
+    <div class="row" style="float: right">
+      <button *ngIf="count > 1" type="button" class="btn btn-primary" style="width: 100px" (click)="onPrevious()">Previous</button>
+      <button *ngIf="count < 3" type="button" class="btn btn-primary" style="width: 100px" (click)="onNext()">Next</button>
+      <button *ngIf="count == 3" type="button" class="btn btn-primary" style="width: 100px" (click)="onModalClose()">Close</button>
+    </div>
+    <br/><br/>
+  </div>
+</div>

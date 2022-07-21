@@ -1,0 +1,18 @@
+<div>
+    <article class="card-body">
+        <h3 class="card-title text-center mb-2">Your interests</h3>
+            <hr>
+        <span>Select your preferences (optional)</span>
+        <form id="form-control" (ngSubmit)="registerUser()" [formGroup]="form">
+            <label class="category"
+              formArrayName="categories"
+              *ngFor="let category of preferences; let i = index;">
+              <input type="checkbox" [formControlName]="i"/>
+              {{category}}
+            </label>
+            <div class="form-group" >
+                <button type="submit" class="btn btn-primary btn-lg btn-block login-button mt-4">Register</button>
+            </div>
+          </form>
+    </article>
+</div>

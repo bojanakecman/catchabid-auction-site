@@ -1,0 +1,58 @@
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-4">
+  <div *ngFor="let auction of auctions" >
+    <div class="col mb-4">
+      <div [class]="'card ' + auctionsGroup.toLowerCase() + '-auction'">
+        <article class="col-item" style="border: none; margin-bottom: 0 !important;">
+          <div id="container" class="container">
+              <img src="data:image/jpeg;base64,{{auction.image}}" class="image" alt="Product Image">
+              <a href="#detail" *ngIf="auctionsGroup=='RECENT' || isOwnAuction(auction)" (click)="showAuctionDetails(auction)">
+                <div class="overlay">
+                  <div class="text">SHOW DETAILS</div>
+                </div>
+              </a>
+              <a href="#detail" *ngIf="auctionsGroup=='UPCOMING' && !isOwnAuction(auction) && !isUserSubscribed(auction)" (click)="subscribeToAuction(auction)">
+                <div class="overlay">
+                  <div class="text">SUBSCRIBE</div>
+                </div>
+              </a>
+              <a href="#detail" *ngIf="auctionsGroup=='UPCOMING' && isUserSubscribed(auction)" (click)="unsubscribeFromAuction(auction)">
+                <div class="overlay">
+                  <div class="text">UNSUBSCRIBE</div>
+                </div>
+              </a>
+          </div>
+        <div class="info">
+          <p class="card-text-small font-weight-500 color-grey-subtext">Created by {{auction.creatorName}} 
+            <i *ngIf="auction.creatorVerified" class="fa fa-check-circle" style="color:dodgerblue"></i>
+          </p>
+          <p class="card-text-large font-weight-500 text-truncate">{{auction.auctionName}}</p>
+          <p class="card-text-small font-weight-500 color-grey-subtext">CURRENT BID</p>
+          <p class="card-text-large price-new font-weight-500" *ngIf="auction.highestBid==undefined">{{auction.minPrice}}€</p>
+          <p class="card-text-large price-new font-weight-500"
+             *ngIf="auction.highestBid!=undefined">{{auction.highestBid}}€</p>
+          <div class="row">
+              <div class="col-sm-6" style="padding-right: 0; margin-bottom: 10px;">
+                  <app-auction-countdown class="text-medium-left font-weight-200 color-grey-subtext float-left" style="padding-top:5px;" *ngIf="auctionsGroup=='RECENT'"
+                                 [countdownType]="'ending-countdown'"
+                                 [endDate]="auction.endTime"></app-auction-countdown>
+                  <app-auction-countdown class="text-lg-left font-weight-200 color-grey-subtext float-left" style="padding-top:5px;" *ngIf="auctionsGroup=='UPCOMING'"
+                                 [countdownType]="'starting-countdown'"
+                                 [endDate]="auction.startTime"></app-auction-countdown>
+              </div>
+              <div class="col-sm-6" *ngIf="auctionsGroup=='RECENT'" >
+                <a href="#" (click)="openBidModal(auction)" class="btn btn-primary card-button">Bid</a>
+              </div>
+              <div class="col-sm-6" *ngIf="auctionsGroup=='UPCOMING' && isUserSubscribed(auction)" style="margin-top: 5px;">
+                <span class="badge badge-secondary" ngbTooltip="You will receive a notification when this auction starts" placement="bottom" style="width: 100%;">SUBSCRIBED </span>
+              </div>
+              <div class="col-sm-6" *ngIf="auction.status == 'CANCELLED'" style="margin-top: 5px;">
+                <span class="badge badge-secondary" ngbTooltip="This auction has been cancelled" placement="bottom" style="width: 100%;">CANCELLED </span>
+              </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+  </div>
+</div>
+<button *ngIf="!noMoreAuctionsToLoad" (click)="loadMoreAuctions()" class="btn btn-primary h-100"  style="background-color: #5271ff;">Load More</button>

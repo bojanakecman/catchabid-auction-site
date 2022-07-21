@@ -1,0 +1,145 @@
+<form id="form" [formGroup]="form" (ngSubmit)="saveAuction()" ngNativeValidate>
+  <div class="modal-header" style="border-bottom-width: 1px">
+    <h4 class="modal-title pull-left">Create an auction</h4>
+    <button type="button" class="close pull-right" (click)="onModalClose()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-balance-scale"></i> </span>
+          </div>
+          <input type="text" class="form-control" id="inputName" style="padding-left: 5px" placeholder="Item Name" [formControl]="nameForm" required>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-object-group"></i> </span>
+          </div>
+          <select class="form-control selector mr-sm-2" id="inputCategory" [formControl]="categoryForm" required>
+            <option value="" selected disabled hidden>Select category</option>
+            <option *ngFor="let cat of categories" [value]="cat">
+              {{cat}}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+          <div class="form-group col-md-3">
+            <div class="input-group">
+              <input class="form-control" placeholder="Start time"
+                     name="dp" ngbDatepicker #dStart="ngbDatepicker"
+                     [formControl]="startDateForm" [minDate]="minStartDate" (ngModelChange)="setMaxEndDate()" required>
+              <div class="input-group-append">
+                <span class="input-group-text" (click)="dStart.toggle()"><i class="fa fa-calendar"
+                  aria-hidden="true"></i></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-3">
+            <ngb-timepicker [spinners]="false" [formControl]="startTimeForm" required></ngb-timepicker>
+          </div>
+      <div class="form-group col-md-3">
+            <div class="input-group">
+              <input class="form-control" placeholder="End time"
+                     name="dp" ngbDatepicker #dEnd="ngbDatepicker"
+                     [formControl]="endDateForm" [minDate]="minEndDate" required>
+              <div class="input-group-append">
+                <span class="input-group-text" (click)="dEnd.toggle()"><i class="fa fa-calendar"
+                  aria-hidden="true"></i></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-3">
+            <ngb-timepicker [spinners]="false" [formControl]="endTimeForm" required></ngb-timepicker>
+          </div>
+        </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-flag"></i> </span>
+          </div>
+          <input type="text" class="form-control" id="inputCountry" placeholder="Country" [formControl]="countryForm">
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-map-marker"></i> </span>
+          </div>
+          <input type="text" class="form-control" id="inputCity" placeholder="City" [formControl]="cityForm">
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-map-pin"></i> </span>
+          </div>
+          <input type="text" class="form-control" id="inputAddress" placeholder="Address" [formControl]="addressForm">
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-home"></i> </span>
+          </div>
+          <input type="text" class="form-control" id="inputHouse" placeholder="House no." [formControl]="houseNrForm">
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-money"></i> </span>
+              </div>
+              <input type="text" class="form-control" id="inputPrice" placeholder="Minimal price" [formControl]="priceForm" min="0" required>
+            </div>
+          </div>
+        </div>
+        <div class="form-row" id="descriptionRow">
+          <div class="form-group col-md-12">
+            <textarea class="form-control" aria-label="With textarea" id="inputDescription"
+                      placeholder="Description" [formControl]="descriptionForm"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-picture-o"></i> </span>
+              </div>
+              <div class="custom-file" id="inputImage">
+                <input type="file" class="custom-file-input" id="customFile" (change)="inputImage($event)" [formControl]="imageForm" required>
+                <label class="custom-file-label" for="customFile" style="overflow: hidden">{{image}}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <img [src]="imgPreview" alt="..." class="img-thumbnail" id="imagePreview">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" [disabled]="buttonDisable">
+          Save an auction</button>
+
+  </div>
+</form>

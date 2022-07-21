@@ -1,0 +1,17 @@
+
+  <div class="modal-header" style="border-bottom-width: 1px">
+    <h4 class="modal-title pull-left">Cancel Auction</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="confirmCancellation(false)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-12">
+        <p>Are you sure?</p>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button (click)="confirmCancellation(true)" type="submit" class="btn btn-danger">Cancel Auction</button>
+  </div>

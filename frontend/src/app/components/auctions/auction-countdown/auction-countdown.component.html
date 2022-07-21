@@ -1,0 +1,10 @@
+<ng-container *ngIf="!counterEnded; else counterEndedView">
+  <span class="countdownText" *ngIf="countdownType == 'ending-countdown'">Ends in </span>
+  <span class="countdownText"  *ngIf="countdownType == 'starting-countdown'">Starts in </span>
+  <countdown class="countdownText" *ngIf="timeDiffInDays() < 1" [config]="countdownConfig()" (event)="counterFinishedCallback($event)"></countdown>
+  <span class="countdownText"  *ngIf="timeDiffInDays() >= 1">{{ countdownInDaysString() }}</span>
+</ng-container>
+<ng-template #counterEndedView>
+  <span class="countdownText"  *ngIf="countdownType == 'ending-countdown'">Auction ended</span>
+  <span class="countdownText"  *ngIf="countdownType == 'starting-countdown'">Auction started</span>
+</ng-template>

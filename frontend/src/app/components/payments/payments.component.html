@@ -1,0 +1,30 @@
+<div class="modal-header" style="border-bottom-width: 1px">
+  <h4 class="modal-title pull-left">Auction payment</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="onModalClose()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-12">
+      <p>Please provide your payment details in order to pay for the auction<span style="font-weight: bold;">
+        {{ auction.auctionName }}</span> of which your bid of <span style="font-weight: bold;">{{ auction.highestBid }}€
+        </span> was the highest.</p>
+      <label class="form-control-label" >Credit card details</label>
+      <ngx-stripe-card
+        [options]="cardOptions"
+        [elementsOptions]="elementsOptions"
+        class="form-control mb-3"></ngx-stripe-card>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <div *ngIf="processingPayment" class="spinner-border text-primary" role="status">
+    <span class="sr-only">Starting payment...</span>
+  </div>
+  <button class="btn btn-primary" type="submit" (click)="processPayment()">
+    Pay Auction
+  </button>
+</div>
+
+

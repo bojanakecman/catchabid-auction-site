@@ -1,0 +1,21 @@
+<div id="myModal" class="card">
+    <article class="card-body">
+        <div class="modal-header">
+            <div style="width: 100%; justify-content: center;">
+                <h4 class="card-title text-center mb-2" style="margin-left: 52px;">How would you rate this user?</h4>
+            </div>  
+            <button type="button" class="close pull-right" (click)="onModalClose()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <ngb-rating [(rate)]="currentRate" [max]="5" style="margin-left:30%">
+            <ng-template let-fill="fill" let-index="index">
+            <span class="star" [class.filled]="fill === 100">&#9733;</span>
+            </ng-template>
+        </ngb-rating>
+        <hr>
+        <div class="form-group" >
+            <button type="submit"  (click)="setRating()" class="btn btn-primary btn-lg btn-block login-button mt-4" style="background-color:#5271ff">Submit</button>
+        </div>
+    </article>
+</div>

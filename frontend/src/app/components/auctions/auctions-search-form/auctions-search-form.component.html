@@ -1,0 +1,46 @@
+<div class="mb-4 d-lg-none d-block">
+  <h2 style="color: #182c83;font-size: 200%; margin-bottom: 30px;">Active Auctions </h2>
+  <div class="form-group">
+    <input class="form-control" placeholder="Search" type="text"
+           name="searchInputText" (keydown.enter)="processTextInput($event)" (focusout)="processTextInput($event)" [(ngModel)]="searchInputText" placeholder="Search...">
+  </div>
+</div>
+
+<div class="mb-4 mt-6">
+  <h4 style="color: #A9AFD3 !important">Categories</h4>
+  <ul class="list-group">
+    <li *ngFor="let category of categories" class="list-group-item">
+      <div class="custom-control custom-checkbox auction-category-filter-item">
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          [id]="'auctions-search-form-category-checkbox-' + category"
+          (change)="toggleCategoryCheckbox($event, category)"
+        />
+        <label class="custom-control-label" [for]="'auctions-search-form-category-checkbox-' + category" >{{ capitalizeFirstLetter(category) }}</label>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div class="mb-4">
+  <h4 style="color: #A9AFD3 !important">Countries</h4>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let country of countries">
+      <div class="custom-control custom-checkbox auction-country-filter-item">
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          [id]="'auctions-search-form-country-checkbox-' + country"
+          (change)="toggleCountryCheckbox($event, country)"
+        />
+        <label
+          class="custom-control-label"
+          [for]="'auctions-search-form-country-checkbox-' + country"
+        >
+          {{ country }}
+        </label>
+      </div>
+    </li>
+  </ul>
+</div>

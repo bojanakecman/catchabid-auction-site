@@ -1,0 +1,42 @@
+<div id="myModal" class="card">
+    <article class="card-body">
+        <div class="modal-header">
+            <div style="width: 100%; justify-content: center;">
+                <h3 class="card-title text-center mb-2" style="margin-left: 52px;">Sign in</h3>
+            </div>  
+            <button type="button" class="close pull-right" (click)="onModalClose()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form ngNativeValidate name="form" (ngSubmit)="login()" class="form-horizontal" style="margin-top: 20px;">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input name="email"  [(ngModel)]="email" class="form-control" style="padding-left: 5px;" placeholder="Email" type="text" required>
+                </div>
+            </div> 
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input name="password" id="password" [(ngModel)]="password" class="form-control" style="padding-left: 5px;" placeholder="******" type="password" required>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-eye" id="togglePassword"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group"> 
+                <div class="col-md-12 text-right">
+                    <a class="small" (click)="openForgotPasswordModal()">Forgot password?</a>
+                </div>     
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block"> Login  </button>
+            </div> 
+            <p class="small text-center"  style="opacity: 0.75;"> Not a member?<a  href=#register (click)="openRegisterModal()"> Register now</a></p>                                                   
+        </form>
+    </article>
+</div>

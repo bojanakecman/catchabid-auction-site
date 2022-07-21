@@ -1,0 +1,109 @@
+<div class="container" style="height: 800px">
+  <h4 class="font-weight-bold py-3 mb-4">My statistics </h4>
+  <div class="card-body">
+    <div>
+      <div class="d-flex align-content-center flex-wrap" style="margin-left: 5%">
+        <div *ngIf="!showBidsChart">
+          <div class="card statistic-card">
+            <div class="card-body">
+              <p class="card-title font-weight-bold">Bids per Category <i class="fa fa-question-circle"
+                                                                          ngbTooltip="  How many bids do you have per category"
+                                                                          style="margin-left: 2px"
+                                                                          aria-hidden="true"></i></p>
+              <canvas baseChart
+                      [data]="doughnutChartBidsData"
+                      [options]="options"
+                      [colors]="chartColors"
+                      [labels]="doughnutChartBidsLabels"
+                      [legend]="false"
+                      [chartType]="doughnutChartType"></canvas>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!showWinsChart">
+          <div class="card statistic-card">
+            <div class="card-body">
+              <p class="card-title font-weight-bold">Wins per Category <i
+                ngbTooltip="How many wins do you have per category" class="fa fa-question-circle"
+                style="margin-left: 2px" placement="top"
+                aria-hidden="true"></i></p>
+              <canvas baseChart
+                      [data]="doughnutChartWinsData"
+                      [options]="options"
+                      [colors]="chartColors"
+                      [labels]="doughnutChartWinsLabels"
+                      [legend]="false"
+                      [chartType]="doughnutChartType"></canvas>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!showRatioChart">
+          <div class="card statistic-card">
+            <div class="card-body">
+              <p class="card-title font-weight-bold">Wins ratio <i
+                ngbTooltip="How many wins vs. bids do you have per category" class="fa fa-question-circle"
+                style="margin-left: 2px"
+                aria-hidden="true"></i></p>
+              <div>
+                <div class="chartTitle">
+                  {{myRatio}}
+                </div>
+                <canvas baseChart
+                        [data]="doughnutChartRatioData"
+                        [labels]="doughnutChartRatioLabels"
+                        [chartType]="doughnutChartType"
+                        [colors]="chartColorsTwo"
+                        [options]="options"
+                        [legend]="false"
+                        [options]="{cutoutPercentage: 80}"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <div>
+      <div class="d-flex align-content-center flex-wrap" style="margin-left: 5%">
+        <div *ngIf="!showPopularity">
+          <div class="card statistic-card">
+            <div class="card-body">
+              <p class="card-title font-weight-bold" style="margin-left:-2%;">Popularity of Auctions per Category<i
+                class="fa fa-question-circle"
+                ngbTooltip="How many bids do you have on average on your auctions in each category"
+                style="margin-left: 2px" aria-hidden="true"></i></p>
+              <canvas baseChart
+                      [data]="barChartPopularityData"
+                      [labels]="barChartPopularityLabels"
+                      [options]="barChartOptions"
+                      [chartType]="barChartType"
+                      [colors]="chartColors"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="!showSuccess">
+          <div class="card statistic-card">
+            <div class="card-body">
+              <p class="card-title font-weight-bold" style="margin-left:-2%;">Success of Auctions per Category<i
+                ngbTooltip="Average increase in price of your auctions per category"
+                class="fa fa-question-circle" style="margin-left: 1px" aria-hidden="true"></i></p>
+              <canvas baseChart
+                      [data]="barChartSuccessData"
+                      [labels]="barChartSuccessLabels"
+                      [options]="barChartOptions"
+                      [colors]="chartColors"
+                      [chartType]="barChartType"></canvas>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div *ngIf="showSuccess && showPopularity && showRatioChart && showBidsChart && showWinsChart">
+      <p class="card-text font-italic text-md-center">You have no bids or auctions yet to create statistics</p>
+    </div>
+  </div>
+</div>

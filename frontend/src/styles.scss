@@ -1,0 +1,156 @@
+$fa-font-path: "~font-awesome/fonts";
+@import '~font-awesome/scss/font-awesome';
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+// or
+@import "~bootstrap/scss/bootstrap";
+
+// then import toastr scss
+@import "~ngx-toastr/toastr-bs4-alert.scss";
+
+.btn-primary {
+  border: 0  !important;;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08)  !important;
+}
+
+.btn-primary:not(:disabled):not(.disabled):hover {
+  background-color: #3C4BA1 !important;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus {
+  background-color: #3C4BA1 !important;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus,
+.btn-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(72, 195, 206, 0.5) !important;
+}
+
+.form-control {
+  background-color: #eeeffb !important;
+  color: #443d52 !important;
+}
+
+.custom-file-input {
+  background-color: #eeeffb !important;
+}
+
+.custom-file {
+  background-color: #eeeffb !important;
+}
+
+.custom-control-input:not(:disabled):active ~ .custom-control-label::after {
+  background-color: #3C4BA1;
+  border-radius: 20%;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #3C4BA1 !important;
+}
+
+.text-muted-blue {
+  color: #A9AFD3;
+}
+
+
+.list-group-item {
+  color: #A9AFD3 !important;
+}
+
+.row {
+  color: #17204C !important;
+}
+
+.body {
+  color: #17204C !important;
+}
+
+.modal-body {
+  color: #17204C !important;
+}
+
+.modal-header {
+  color: #17204C !important;
+}
+
+
+h3, h4 {
+  color: #17204C !important;
+}
+
+
+.modal-title {
+  color: #17204C !important;
+}
+
+p {
+  color: #17204C !important;
+}
+
+h6 {
+  color: #A9AFD3 !important;
+}
+
+.invalid-feedback {
+  margin-left: 5px !important;
+  color: #dc3545 !important;
+}
+
+.box-bottom {
+  margin: 24px -24px -24px -24px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  background-color: #eeeffb !important;
+}
+
+.list-group-item {
+  font-size: 0.875rem !important;
+}
+
+.footer {
+  margin-left: 35px !important;
+}
+
+.center-vertically {
+  text-align: center;
+  position: relative;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.card {
+  box-shadow: 0 1px 1px rgba(0,0,0,0.12),
+              0 2px 2px rgba(0,0,0,0.12),
+              0 4px 4px rgba(0,0,0,0.12),
+              0 8px 8px rgba(0,0,0,0.12),
+              0 16px 16px rgba(0,0,0,0.12) !important;
+}
+
+.input-group-text {
+  background-color: #eeeffb !important;
+}
+
+.modal-footer {
+  background-color: #eeeffb;
+  padding: 1rem !important;
+}
+
+.div-box-bottom {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 20px;
+  left: 20px;
+  right: 20px;
+}
+
+.ngb-dp-header {
+  background-color: #fff !important;
+}
+
+.drag-elements {
+  cursor: grab;
+}

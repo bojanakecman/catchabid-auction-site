@@ -1,0 +1,17 @@
+.carousel-inner img {
+    width: 100%;
+    object-fit: cover;
+    object-position: 10% 0;
+  }
+
+.card-button{
+    float: left;
+    border-radius:10px;
+    background-color: #5271ff;
+    margin-top: 20px;
+    padding-left: 0;
+    padding-right: 0;
+    height: 40px;
+    width: 290px;
+    max-width: 98%;
+}
